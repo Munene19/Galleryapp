@@ -1,0 +1,76 @@
+{%extends 'base.html'%}
+
+{%block content%}
+{{block.super}}
+<div class="container-fluid" style="background-color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <span id="locations">
+                    <h1>LOCATIONS</h1>
+                    {% for location in locations %}
+                    <a class="btn btn-outline-info btn-sm" id="btn"
+                        href="{% url 'location' location.id %}">{{location}}</a>
+                    {%endfor%}
+                </span>
+            </div>
+            <div class="col-lg-6">
+                <span id="locations">
+                    <h1>CATEGORIES</h1>
+                    {% for category in category %}
+                    <a class="btn btn-outline-info btn-sm" id="btn"
+                        href="{% url 'category' category.id %}">{{category}}</a>
+                    {%endfor%}
+                </span>
+            </div>
+        </div>
+
+        <hr>
+        <div class="card-columns">
+            {% for image in images %}
+            <div class="card" data-toggle="modal" data-target="#{{image.id}}">
+                <img src="{{image.image_url.url}}" alt="{{image.name}}" class="card-img">
+            </div>
+            <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                    <div class="modal-content modalcard">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageheader">{{image.name}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <img src="{{image.image_url.url}}" alt="{{image.name}}" class="img-fluid">
+                            <p class="imgdesc text-center">{{image.description}}</p>
+                            {% for category in image.categories.all %}
+                            <span class="btn btn-sm btn-outline-info">{{category}}</span>
+                            {% endfor %}
+                            <a href="/location/{{image.location}}"
+                                class="btn btn-sm btn-outline-info">{{image.location}}</a>
+                        </div>
+                        <div class="modal-footer">
+                            <input class="form-control input-lg" type="text" value="{{image.image_url.url}}"
+                                id="{{image.id}}.url">
+                            <button class="btn btn-success btn-sm" onclick="copyToClipboard('{{image.id}}.url')">Copy</button>
+                            <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function copyToClipboard(element) {
+                    var myVar = document.getElementById(element);
+                    myVar.select();
+                    document.execCommand("copy");
+                }
+            </script>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

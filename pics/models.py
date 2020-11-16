@@ -4,14 +4,14 @@ from django.db.models import Model
 # Create your models here.
 
 class Location(models.Model):
-    Image_location = models.CharField(max_length=30, null=True)
+    Image_location = models.CharField(max_length=30)
 
     def __str__(self):
         return self.Image_location
 
 
 class Category(models.Model):
-    Image_category = models.CharField(max_length=30, null=True)
+    Image_category = models.CharField(max_length=30)
 
     def save_category(self):
         self.save()

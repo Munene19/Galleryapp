@@ -2,12 +2,7 @@ from django.test import TestCase
 from django.test import TestCase
 from .models import Image, Location, Category
 
-# Create your tests here.
-
-from django.test import TestCase
-from .models import Image, Location, categories
-
-# Create your tests here.
+# Create your tests here
 class ImageTestClass(TestCase):
     # Set up method
     def setUp(self):
@@ -37,7 +32,7 @@ class ImageTestClass(TestCase):
 
     def test_search_by_category(self):
         self.image.save_image()
-        self.category = categories(name = "test")
+        self.category = Category(name = "test")
         self.category.save_category()
         self.image = Image.get_image_by_id(1).categories.add(self.category)
         self.searched_images = Image.search_by_category('test')
