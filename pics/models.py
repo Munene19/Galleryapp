@@ -21,11 +21,12 @@ class Category(models.Model):
 
 
 class Image(models.Model):
-    Image = models.ImageField(upload_to='static/media/' , height_field=None, width_field=None, max_length=100, null=True)  
     Image_name = models.CharField(max_length=30)
     Image_description = models.CharField(max_length=100)
     location = models.ForeignKey(Location, null=True, on_delete=models.SET_NULL)
     Category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
+    Image = models.ImageField(upload_to='media/' , height_field=None, width_field=None, max_length=100, null=True)  
+
 
     def __str__(self):
         return self.Image_name
@@ -36,7 +37,7 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
 
-     @classmethod
+    @classmethod
     def all_images(cls):
         images = cls.objects.all()
         return images
@@ -49,6 +50,12 @@ class Image(models.Model):
             return case_images
         else:
             return images
+
+    @classmethod
+    def filter_by_location(cls,search_term):
+        location = Location.objects.get(name = search_term)
+        images = cls.objects.filter(location = location)
+        return images
 
 
 

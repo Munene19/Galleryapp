@@ -1,7 +1,10 @@
+import os
+from django.conf import settings
 from django.shortcuts import render
-from pics.models import *
+from django.templatetags.static import static
 
 # Create your views here.
 def index(request):
-    Images = Image.objects.all()
-    return render (request, 'base.html',{'Image':resultsdisplay })
+    images = Image.all_images()
+    locations = Location.objects.all()
+    return render(request, 'index.html', {"images":images,"locations":locations})
