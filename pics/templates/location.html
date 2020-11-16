@@ -27,9 +27,9 @@
                         <img src="{{image.image_url.url}}" alt="Image" class="img-fluid">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-toggle="modal"
+                        <button type="button" class="btn btn-dark" data-toggle="modal"
                             data-target="#{{image.id}}-info"><i class="fas fa-info-circle"></i> details</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                        <button type="button" class="btn btn-dark" data-dismiss="modal"
                             style="border: 0.5px solid #d3d3d3;">exit</button>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="modal-footer">
                         <input class="form-control input-lg" type="text" value="{{image.image_url.url}}"
                             id="{{image.id}}-url">
-                        <button class="btn btn-default" onclick="copyToClipboard('{{image.id}}-url')">Copy to clipboard</button>
+                        <button class="btn btn-dark" onclick="copyToClipboard('{{image.id}}-url')">Copy to clipboard</button>
                     </div>
                 </div>
             </div>
