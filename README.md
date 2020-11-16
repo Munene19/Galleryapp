@@ -39,7 +39,7 @@ Django version 3
 _django-bootstrap4
 
 DEPLOYMENT
-Heroku CONTACT INFORMATION Email: Munenexv@gmail.com
+CONTACT INFORMATION Email: Munenexv@gmail.com
 
 MIT License Copyright (c) 2019 Munene Mike
 
