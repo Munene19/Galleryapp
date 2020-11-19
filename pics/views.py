@@ -7,15 +7,17 @@ from .models import Image, Category, Location
 
 # Create your views here.
 def gallery(request):
-    images = Image.all_images()
+    images = Image.objects.all()
     locations = Location.objects.all()
-    return render(request, 'index.html', {"images":images,"locations":locations})
+    ctx = {"images":images,"locations":locations}
+    return render(request, 'index.html', ctx)
 
 def location(request,location):
     locations = Location.objects.all()
     selected_location = Location.objects.get(id = location)
     images = Image.objects.filter(location = selected_location.id)
-    return render(request, 'location.html', {"location":selected_location,"locations":locations,"images":images})
+    ctx_2 = {"location":selected_location,"locations":locations,"images":images}
+    return render(request, 'location.html', ctx_2)
 
 def search(request):
     if 'imagesearch' in request.GET and request.GET["imagesearch"]:
@@ -23,8 +25,9 @@ def search(request):
         category = request.GET.get("imagesearch")
         searched_images = Image.search_by_category(category)
         message = f"{category}"
+        ctx_3 = {"images":searched_images,"category":search_term}
         print(searched_images)
-        return render(request,'search.html',{"images":searched_images,"category":search_term})
+        return render(request,'search.html', ctx_3)
     else:
         message = "Try entering a valid category"
         return render(request, 'search.html', {"message": message})

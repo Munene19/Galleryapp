@@ -1,17 +1,18 @@
 from django.db import models
 from django.db.models import Model
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
 class Location(models.Model):
-    Image_location = models.CharField(max_length=30)
+    Image_location = models.CharField(max_length=100)
 
     def __str__(self):
         return self.Image_location
 
 
 class Category(models.Model):
-    Image_category = models.CharField(max_length=30)
+    Image_category = models.CharField(max_length=100)
 
     def save_category(self):
         self.save()
@@ -21,11 +22,11 @@ class Category(models.Model):
 
 
 class Image(models.Model):
-    Image_name = models.CharField(max_length=30)
+    Image_name = models.CharField(max_length=100)
     Image_description = models.CharField(max_length=100)
     location = models.ForeignKey(Location, null=True, on_delete=models.SET_NULL)
     Category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
-    Image = models.ImageField(upload_to='media/' , height_field=None, width_field=None, max_length=100, null=True)  
+    Image = CloudinaryField('image')  
 
 
     def __str__(self):
