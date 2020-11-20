@@ -10,7 +10,7 @@ This project is a gallery website.
 -Consists of a display of all photos -Users can view details of a single photo Such details include: -Photo title -Photo description -Location -Category
 
 ### PROJECT SET UP INSTRUCTIONS
-This project was generated with python version 3.7.3 and django version 1.11.17
+This project was generated with python version 3.7.3 and django version 3
 
 #### Accessing the shell
 Run `python manage.py shell' to use the shell
