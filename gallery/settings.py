@@ -28,7 +28,7 @@ SECRET_KEY = 'udt-*8x*f7t2rs#(^ow#w8bw02+1=t5wcx)_8=^&q1^bv1-i_s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['galleryxv.herokuapp.com']
 
 
 # Application definition
